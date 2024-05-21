@@ -110,11 +110,14 @@ const Login = () => {
                 {...register("password")}
               />
             </div>
-           
-              <p className="help is-danger">{errors.password?.message}</p>
-              <Link className="mt-4 is-flex is-justify-content-right is-align-content-center" to="/forgot-password">
-                Forgot Password?
-              </Link>
+
+            <p className="help is-danger">{errors.password?.message}</p>
+            <Link
+              className="mt-4 is-flex is-justify-content-right is-align-content-center"
+              to="/forgot-password"
+            >
+              Forgot Password?
+            </Link>
           </div>
 
           <div className="field mt-5 ">

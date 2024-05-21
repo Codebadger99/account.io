@@ -3,10 +3,15 @@ import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Password from "../pages/Password/Password";
+import Welcome from "../pages/Welcome/Welcome";
 
 const route = createBrowserRouter([
   {
     path: "/",
+    element: <Welcome/>,
+  },
+  {
+    path: "/signUp",
     element: <SignUp />,
   },
   {
@@ -18,9 +23,10 @@ const route = createBrowserRouter([
     element: <Dashboard />,
   },
   {
-    path: "/forgot-password",
+    path: "/forgotPassword",
     element: <Password />,
   },
+  
 ]);
 
 export default route;
