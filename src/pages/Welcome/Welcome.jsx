@@ -25,6 +25,7 @@ const Welcome = () => {
             Welcome to ACCOUNT.IO, <br /> it a authentication system using React
             and Firebase
           </p>
+
           <button className="button is-info">
             <Link to="/signUp" className="has-text-dark">
               Get Started
