@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 const schema = yup
   .object({
-    email: yup.string().email().required("Name must not be empty"),
+    email: yup.string().email().required("Email must not be empty"),
     password: yup
       .string()
       .min(10, "Password must be at least 10 characters")
@@ -110,15 +110,14 @@ const Login = () => {
                 {...register("password")}
               />
             </div>
-            <div className="is-flex is-justify-content-space-between">
+           
               <p className="help is-danger">{errors.password?.message}</p>
-              <Link className="mt-4" to="/forgot-password">
+              <Link className="mt-4 is-flex is-justify-content-right is-align-content-center" to="/forgot-password">
                 Forgot Password?
               </Link>
-            </div>
           </div>
 
-          <div className="field mt-5 is-flex is-justify-content-center is-align-content-center">
+          <div className="field mt-5 ">
             <div className="control">
               <button className="button is-danger" type="submit">
                 Login
