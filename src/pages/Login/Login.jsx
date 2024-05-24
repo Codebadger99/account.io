@@ -62,7 +62,6 @@ const Login = () => {
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
         // ...
-        console.log(user);
 
         navigate("/dashboard");
       })

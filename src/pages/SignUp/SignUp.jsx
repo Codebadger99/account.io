@@ -5,10 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast, { Toaster } from "react-hot-toast";
 import * as yup from "yup";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app, db } from "../../firebase/firebase";
-import { collection, addDoc } from "firebase/firestore"; 
-
-
+import { app } from "../../firebase/firebase";
 
 const schema = yup
   .object({
@@ -35,30 +32,20 @@ const SignUp = () => {
   const navigate = useNavigate();
   const auth = getAuth(app);
 
-  const onSubmit = async(data, e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault();
     if (data) {
       createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          user.displayName = data.name;
-          console.log(user);
+
           // ...
           navigate("/dashboard");
         })
         .catch((error) => {
           toast.error(error.message);
         });
-
-        try {
-          const docRef = await addDoc(collection(db, "users"), {
-            name: data.name
-          });
-          console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
     }
 
     console.log(data);

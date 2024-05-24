@@ -23,7 +23,7 @@ const Dashboard = () => {
       .then(() => {
         // Sign-out successful.
         const auth = auth.signOut();
-        console.log(auth);
+      
         navigate("/login");
         return auth;
       })
