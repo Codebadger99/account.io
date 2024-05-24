@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "bulma/css/bulma.min.css";
 import { RouterProvider } from "react-router-dom";
-import route from "./router/router.jsx";
+import route from "./router/route.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

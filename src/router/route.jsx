@@ -4,11 +4,13 @@ import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Password from "../pages/Password/Password";
 import Welcome from "../pages/Welcome/Welcome";
+import UpdatePassword from "../pages/UpdatePassword/UpdatePassword";
+import PrivateRoute from "../components/privateRoute";
 
 const route = createBrowserRouter([
   {
     path: "/",
-    element: <Welcome/>,
+    element: <Welcome />,
   },
   {
     path: "/signUp",
@@ -18,15 +20,19 @@ const route = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <PrivateRoute element={<Dashboard />} />,
   },
   {
     path: "/forgotPassword",
     element: <Password />,
   },
-  
+  {
+    path: "/updatePassword",
+    element: <UpdatePassword />,
+  },
 ]);
 
 export default route;

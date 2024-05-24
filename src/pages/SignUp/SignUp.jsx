@@ -2,8 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toast, { Toaster } from "react-hot-toast";
 import * as yup from "yup";
-import { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app, db } from "../../firebase/firebase";
+import { collection, addDoc } from "firebase/firestore"; 
+
+
 
 const schema = yup
   .object({
@@ -28,14 +33,42 @@ const SignUp = () => {
   });
 
   const navigate = useNavigate();
+  const auth = getAuth(app);
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async(data, e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    if (data) {
+      createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          user.displayName = data.name;
+          console.log(user);
+          // ...
+          navigate("/dashboard");
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            name: data.name
+          });
+          console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+    }
+
+    console.log(data);
   };
 
   return (
     <>
+      <div>
+        <Toaster position="top-center" reverseOrder={false} />
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="SignWidth">
           <div>
@@ -44,11 +77,11 @@ const SignUp = () => {
           </div>
 
           <div className="mt-5">
-            <div class="field mb-5">
-              <label class="label">Name</label>
-              <div class="control">
+            <div className="field mb-5">
+              <label className="label">Name</label>
+              <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
                   placeholder="Name"
                   {...register("name")}
@@ -56,11 +89,11 @@ const SignUp = () => {
               </div>
               <p className="help is-danger">{errors.name?.message}</p>
             </div>
-            <div class="field mb-5">
-              <label class="label">Email</label>
+            <div className="field mb-5">
+              <label className="label">Email</label>
               <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="email"
                   placeholder="Email"
                   {...register("email")}
@@ -68,11 +101,11 @@ const SignUp = () => {
               </div>
               <p className="help is-danger">{errors.email?.message}</p>
             </div>
-            <div class="field mb-5">
-              <label class="label">Password</label>
+            <div className="field mb-5">
+              <label className="label">Password</label>
               <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="password"
                   placeholder="Password"
                   {...register("password")}
@@ -80,9 +113,9 @@ const SignUp = () => {
               </div>
               <p className="help is-danger">{errors.password?.message}</p>
             </div>
-            <div class="field mb-5 is-flex is-justify-content-center is-align-content-center">
-              <div class="control">
-                <button class="button is-danger" type="submit">
+            <div className="field mb-5 is-flex is-justify-content-center is-align-content-center">
+              <div className="control">
+                <button className="button is-danger" type="submit">
                   Submit
                 </button>
               </div>
