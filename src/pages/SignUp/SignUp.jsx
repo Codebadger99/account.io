@@ -21,6 +21,7 @@ const schema = yup
   .required();
 
 const SignUp = () => {
+ 
   const {
     register,
     handleSubmit,
@@ -41,6 +42,7 @@ const SignUp = () => {
           const user = userCredential.user;
 
           // ...
+          
           navigate("/dashboard");
         })
         .catch((error) => {
