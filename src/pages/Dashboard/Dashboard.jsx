@@ -36,7 +36,7 @@ const Dashboard = () => {
       .then(() => {
         // User deleted.
         navigate("/signUp");
-        console.log("Deleted");
+      
       })
       .catch((error) => {
         // An error ocurred
