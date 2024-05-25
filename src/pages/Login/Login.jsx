@@ -55,8 +55,6 @@ const Login = () => {
   const googleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-      
-
         navigate("/dashboard");
       })
       .catch((error) => {
