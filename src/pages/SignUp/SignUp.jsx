@@ -47,7 +47,6 @@ const SignUp = () => {
           toast.error(error.message);
         });
     }
-
   };
 
   return (
