@@ -65,7 +65,9 @@ const Login = () => {
 
         navigate("/dashboard");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
