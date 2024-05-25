@@ -40,8 +40,7 @@ const Login = () => {
       signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          console.log(user);
+
           // ...
 
           navigate("/dashboard");

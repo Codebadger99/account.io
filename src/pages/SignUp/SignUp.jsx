@@ -21,7 +21,6 @@ const schema = yup
   .required();
 
 const SignUp = () => {
- 
   const {
     register,
     handleSubmit,
@@ -39,10 +38,9 @@ const SignUp = () => {
       createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
           // Signed up
-          const user = userCredential.user;
 
           // ...
-          
+
           navigate("/dashboard");
         })
         .catch((error) => {
