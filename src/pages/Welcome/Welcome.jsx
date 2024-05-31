@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Welcome = () => {
   return (
     <>
-      <div>
+      <div className="container">
         <div className="is-flex is-align-items-center is-justify-content-center mb-5">
           <svg
             width="49"
