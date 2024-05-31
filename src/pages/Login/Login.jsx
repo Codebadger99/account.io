@@ -9,6 +9,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
+  linkWithCredential,
 } from "firebase/auth";
 import { app } from "../../firebase/firebase";
 
@@ -51,7 +54,7 @@ const Login = () => {
     }
   };
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         navigate("/dashboard");

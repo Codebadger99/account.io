@@ -6,6 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 import * as yup from "yup";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase/firebase";
+import { useState } from "react";
+import { useStore } from "../../zustand/store";
 
 const schema = yup
   .object({
@@ -31,9 +33,11 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const auth = getAuth(app);
+  const addUsers = useStore((state) => state.updateUser);
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+
     if (data) {
       createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
@@ -42,6 +46,7 @@ const SignUp = () => {
           // ...
 
           navigate("/dashboard");
+          addUsers(data.name);
         })
         .catch((error) => {
           toast.error(error.message);

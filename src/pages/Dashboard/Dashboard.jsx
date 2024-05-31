@@ -5,12 +5,14 @@ import "./Dashboard.css";
 import { getAuth, signOut, deleteUser } from "firebase/auth";
 import { app } from "../../firebase/firebase";
 import { useState, useEffect } from "react";
+import {useStore} from '../../zustand/store'
 
 const Dashboard = () => {
   const auth = getAuth(app);
   const user = auth.currentUser;
   const navigate = useNavigate();
   const [userName, setUserName] = useState(null);
+  const users = useStore(state=>state.user)
 
   useEffect(() => {
     if (user !== null) {
@@ -52,7 +54,7 @@ const Dashboard = () => {
       </div>
       <div className="dashboard">
         <h1 className="has-text-centered mb-4 is-size-2">
-          Welcome {user.displayName === null ? "user" : userName} 👏
+          Welcome {user.displayName === null ? users : userName} 👏
         </h1>
         <div className="is-flex is-align-content-center is-justify-content-center">
           <div className="field is-grouped">
